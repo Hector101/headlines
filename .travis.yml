@@ -1,8 +1,8 @@
 language: node_js
 node_js: “nvm ls-remote”
-install: npm install
-script: npm test
+install: nvm install
+script: nvm test
 after_success:
- - npm install -g codeclimate-test-reporter
+ - nvm install -g codeclimate-test-reporter
  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
  - codeclimate-test-reporter < lcov.info
