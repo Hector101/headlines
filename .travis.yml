@@ -1,5 +1,5 @@
 language: node_js
-node_js: “7”
+node_js: “nvm ls-remote”
 install: npm install
 script: npm test
 after_success:
