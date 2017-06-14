@@ -13,7 +13,7 @@ class Actions {
    * to the app store
    */
   getSources() {
-    Api.getSources('https://newsapi.org/v1/sources?language=en')
+    Api.getSources('https://newsapi.org/v1/sources')
       .then(sources => Dispatcher.dispatch({
         actionType: ActionTypes.SOURCES,
         sources,

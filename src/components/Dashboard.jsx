@@ -34,18 +34,11 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * Method is called each time a change
-   * occur in this component
-   */
-  componentWillMount() {
-    Actions.getSources();
-    Actions.getArticles('abc-news-au');
-  }
-
-  /**
    * Method called when component mounts
    */
   componentDidMount() {
+    Actions.getSources();
+    Actions.getArticles('abc-news-au');
     store.on('change', this.updateArticle);
     this.onChange();
   }
