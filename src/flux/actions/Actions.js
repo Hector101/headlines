@@ -70,6 +70,12 @@ class Actions {
       sourceName,
     });
   }
+  getAuth(authValue) {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.AUTH,
+      authValue,
+    });
+  }
 }
 
 export default new Actions();

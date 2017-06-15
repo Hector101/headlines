@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher/dispatcher';
 import ActionTypes from '../actions/ActionTypes';
+import Auth from '../../auth/auth';
 
 /**
  * Store class listens for changes from
@@ -14,6 +15,7 @@ class Store extends EventEmitter {
     this.articles = null;
     this.selected = 'ABC News (AU)';
     this.available = '';
+    this.auth = Auth.ifLoggedin();
   }
   setSources(sources) {
     this.sources = sources;
@@ -27,6 +29,10 @@ class Store extends EventEmitter {
     this.selected = name;
     this.emit('change');
   }
+  setAuth(authValue) {
+    this.auth = authValue;
+    this.emit('change');
+  }
   getSources() {
     return this.sources;
   }
@@ -35,6 +41,9 @@ class Store extends EventEmitter {
   }
   getSelected() {
     return this.selected;
+  }
+  getAuth() {
+    return this.auth;
   }
   dispatchActions(action) {
     switch (action.actionType) {
@@ -46,6 +55,9 @@ class Store extends EventEmitter {
         break;
       case ActionTypes.SELECTED:
         this.setSelected(action.sourceName);
+        break;
+      case ActionTypes.AUTH:
+        this.setAuth(action.authValue);
         break;
 
     }

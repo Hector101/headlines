@@ -5,4 +5,5 @@ export default {
   ARTICLES_ERROR: 'ARTICLES_ERROR',
   SELECTED: 'SELECTED',
   SORT: 'SORT',
+  AUTH: 'AUTH',
 };

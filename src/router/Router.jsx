@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
 import Auth from '../auth/auth';
+import store from '../flux/store/store';
 
 class Routes extends React.Component {
   constructor(props) {
@@ -16,8 +17,15 @@ class Routes extends React.Component {
         auth: false,
       };
     }
+    this.updateAuth = this.updateAuth.bind(this);
   }
   componentWillMount() {
+    store.on('change', this.updateAuth);
+  }
+  componentWillUnmount() {
+    store.removeListener('change', this.updateAuth);
+  }
+  updateAuth() {
     this.setState({
       auth: Auth.ifLoggedin(),
     });
@@ -30,7 +38,7 @@ class Routes extends React.Component {
             <Route
               path="/"
               exact
-              render={() => (this.state.auth ? (<Redirect to="/dashboard" {...this.props} />)
+              render={() => (this.state.auth ? (<Redirect push to="/dashboard" {...this.props} />)
             : (<Home />))}
             />
             <Route
