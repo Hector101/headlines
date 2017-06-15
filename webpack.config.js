@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     compress: true,
     hot: true,
-    port: 3000,
+    port: process.env.PORT || 8080,
     historyApiFallback: true,
   },
   resolve: {
