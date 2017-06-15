@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
   // import dependency
 import GoogleLogin from 'react-google-login';
+import { Redirect } from 'react-router-dom';
 
 import Auth from '../auth/auth';
 
@@ -8,13 +10,14 @@ import Auth from '../auth/auth';
  * Navbar react componet
  */
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       isLoggedin: Auth.ifLoggedin(),
     };
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
-  conpnonentWillMount() {
+  componentWillMount() {
     if (this.state.isLoggedin !== Auth.ifLoggedin()) {
       this.setState({
         isLoggedin: Auth.ifLoggedin(),
@@ -29,8 +32,8 @@ class Navbar extends React.Component {
   */
   responseGoogle(response) {
     Auth.signIn(response);
-    Auth.ifLoggedin();
-    window.location.href = '/dashboard';
+
+    //this.context.router.history.push('/dashboard');
   }
 
   /**
@@ -38,7 +41,6 @@ class Navbar extends React.Component {
   */
   signOut() {
     Auth.signOut();
-    Auth.ifLoggedin();
   }
   
   render() {
@@ -75,6 +77,9 @@ class Navbar extends React.Component {
   }
 
 }
+Navbar.contextTypes = {
+  router: PropTypes.object,
+};
 
 export default Navbar;
 
