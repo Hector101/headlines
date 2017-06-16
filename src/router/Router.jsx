@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
 import Auth from '../auth/auth';
@@ -38,13 +38,12 @@ class Routes extends React.Component {
             <Route
               path="/"
               exact
-              render={() => (this.state.auth ? (<Redirect push to="/dashboard" {...this.props} />)
+              render={() => (this.state.auth ? (<Redirect push to="/dashboard" />)
             : (<Home />))}
             />
             <Route
               path="/dashboard"
-              exact
-              render={() => (!this.state.auth ? (<Redirect to="/" {...this.props} />)
+              render={() => (!this.state.auth ? (<Redirect to="/" />)
             : (<Dashboard />))}
             />
           </Switch>

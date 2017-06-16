@@ -1,18 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackHtmlPlugin = require('html-webpack-plugin');
 
 const hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
-const htmlWebpackHtmlPlugin = new HtmlWebpackHtmlPlugin({
-  template: './index.html',
-  inject: 'body',
-});
 
 // setup webpack configuration
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname),
     filename: 'bundle.min.js',
     publicPath: '/',
   },
@@ -44,5 +39,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [hotModuleReplacementPlugin, htmlWebpackHtmlPlugin],
+  plugins: [hotModuleReplacementPlugin],
 };

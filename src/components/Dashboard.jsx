@@ -39,7 +39,6 @@ class Dashboard extends React.Component {
   componentDidMount() {
     Actions.getSources();
     Actions.getArticles('abc-news-au');
-    store.on('change', this.updateArticle);
     this.onChange();
   }
 
@@ -68,6 +67,7 @@ class Dashboard extends React.Component {
   getSingleArticle(sourceName, sourceTitle) {
     Actions.getArticles(sourceName);
     Actions.selectedSource(sourceTitle);
+    store.on('change', this.updateArticle);
   }
 
   /**

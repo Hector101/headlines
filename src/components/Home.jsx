@@ -18,7 +18,7 @@ const Home = () => (
             </div>
           </li>
           <li>
-            <img className="responsive-img" src="../../public/img/news2.png" alt="ABC News" />
+            <img className="responsive-img" src="../public/img/news2.png" alt="ABC News" />
             <div className="caption right-align">
               <h2>ABC News</h2>
             </div>
