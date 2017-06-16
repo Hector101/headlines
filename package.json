@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js --progress --open",
     "start": "node server.js",
-    "postinstall": "webpack -p",
+    "postinstall": "NODE_ENV=production webpack -p --config webpack.prod.config.js",
     "test": "jest --coverage"
   },
   "main": "src/app.js",
@@ -24,7 +24,8 @@
     "react-dom": "^15.5.4",
     "react-google-login": "^2.8.9",
     "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -47,7 +48,6 @@
     "sass-loader": "^6.0.5",
     "sinon": "^2.3.4",
     "style-loader": "^0.18.1",
-    "webpack": "^2.6.0",
     "webpack-dev-server": "^2.4.5"
   }
 }

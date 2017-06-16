@@ -1,0 +1,30 @@
+{
+    "source":"techcrunch",
+    "sortBy":"top",
+    "articles":[
+        {
+            "author":"Brian Heater",
+            "title":"Amazon’s Dash Wand barcode scanner returns with Alexa and is now essentially free",
+            "description":"The first iteration of Amazon’s Dash Wand wasn’t long for this world. The company trialed the barcode scanner with select Prime Fresh customers in..",
+            "url":"https://techcrunch.com/2017/06/15/amazons-dash-wand-barcode-scanner-returns-with-alexa-and-is-now-essentially-free/",
+            "urlToImage":"https://tctechcrunch2011.files.wordpress.com/2017/06/screen-shot-2017-06-15-at-10-11-28-am.png?w=764&h=400&crop=1",
+            "publishedAt":"2017-06-15T14:21:54Z"
+        },
+        {
+            "author":"Josh Constine",
+            "title":"Facebook requests input on hard questions about censorship",
+            "description":"How should Facebook decide what's allowed on its social network, and how to balance safety and truth with diverse opinions and cultural norms? Facebook wants..",
+            "url":"https://techcrunch.com/2017/06/15/facebook-censorship-terrorism/",
+            "urlToImage":"https://tctechcrunch2011.files.wordpress.com/2017/01/fb-arbiter-of-truth.png?w=738&h=400&crop=1",
+            "publishedAt":"2017-06-15T13:26:38Z"
+        },
+        {
+            "author":"Brian Heater",
+            "title":"The Surface Laptop makes the new Surface Pro mostly a nonstarter",
+            "description":"It's been a week with the new Pro — Microsoft’s part-tablet/part-laptop hybrid machine —  and I already find myself looking longingly at the Surface..",
+            "url":"https://techcrunch.com/2017/06/15/the-surface-laptop-makes-the-new-surface-pro-mostly-a-nonstarter/",
+            "urlToImage":"https://tctechcrunch2011.files.wordpress.com/2017/06/cmc_3705.jpg?w=764&h=400&crop=1",
+            "publishedAt":"2017-06-15T13:00:13Z"
+        }
+    ]
+}
