@@ -19,7 +19,6 @@ class Auth {
       localStorage.setItem('auth', true);
       localStorage.setItem('userDetail', JSON.stringify(signInResonse.profileObj));
       Actions.getAuth(this.ifLoggedin);
-
     } else {
       localStorage.removeItem('auth');
     }
