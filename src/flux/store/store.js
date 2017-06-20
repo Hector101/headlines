@@ -15,7 +15,7 @@ class Store extends EventEmitter {
     this.articles = null;
     this.selected = 'ABC News (AU)';
     this.available = '';
-    this.auth = Auth.ifLoggedin();
+    this.auth = false;
   }
   setSources(sources) {
     this.sources = sources;

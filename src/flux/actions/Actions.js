@@ -5,12 +5,14 @@ import Api from '../../api/api';
 
 /**
  * declare Action dispatcher class
+ * @class Actions
  */
 class Actions {
 
   /**
    * call api and dispach retured data
    * to the app store
+   * @memberof Actions
    */
   getSources() {
     Api.getSources('https://newsapi.org/v1/sources')
@@ -31,7 +33,6 @@ class Actions {
    * @param {string} sortBy
    */
   getArticles(id, sortBy) {
-
     /**
      * check if both parameters are passed to the
      * method to call api with sort by attribute

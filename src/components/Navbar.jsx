@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
   // import dependency
 import GoogleLogin from 'react-google-login';
-import { Redirect } from 'react-router-dom';
 
 import Auth from '../auth/auth';
 
@@ -10,21 +8,6 @@ import Auth from '../auth/auth';
  * Navbar react componet
  */
 class Navbar extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      isLoggedin: Auth.ifLoggedin(),
-    };
-    this.responseGoogle = this.responseGoogle.bind(this);
-  }
-  componentWillMount() {
-    if (this.state.isLoggedin !== Auth.ifLoggedin()) {
-      this.setState({
-        isLoggedin: Auth.ifLoggedin(),
-      });
-    }
-  }
-
   /**
   * call each time login authentication is either
   successful or faiiled
@@ -32,8 +15,6 @@ class Navbar extends React.Component {
   */
   responseGoogle(response) {
     Auth.signIn(response);
-
-    //this.context.router.history.push('/dashboard');
   }
 
   /**
@@ -67,7 +48,7 @@ class Navbar extends React.Component {
               ><span className="white-text">Sign in</span>
                 <i className="material-icons left">arrow_forward</i>
               </GoogleLogin>) : (<a href="/" onClick={this.signOut} >
-              Sign out<i className="material-icons left">arrow_back</i></a>)
+              Sign out<i className="material-icons signout left">arrow_back</i></a>)
             }
             </li>
           </ul>
@@ -77,9 +58,5 @@ class Navbar extends React.Component {
   }
 
 }
-Navbar.contextTypes = {
-  router: PropTypes.object,
-};
-
 export default Navbar;
 

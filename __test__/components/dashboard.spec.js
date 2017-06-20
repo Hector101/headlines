@@ -1,20 +1,22 @@
 import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
-import Dashboard from '../src/components/Dashboard';
-import Actions from '../src/flux/actions/Actions';
+import Dashboard from '../../src/components/Dashboard';
+import Actions from '../../src/flux/actions/Actions';
+import localStorageMock from '../../src/__mock__/localStorage';
+import store from '../../src/flux/store/store';
 
-describe('<Dasdboard /> component\'s', () => {
+describe('Dasdboard component\'s', () => {
   const wrapper = shallow(<Dashboard />);
   const spyDidMount = sinon.spy(Dashboard.prototype, 'componentDidMount');
   const spyWillUnount = sinon.spy(Dashboard.prototype, 'componentWillUnmount');
   const spyActionGetArticles = sinon.spy(Actions, 'getArticles');
-
-  // Mock Dashboard component state
+  window.localStorage = localStorageMock;
+  // Mock Dashboard component inital state
   wrapper.state = {
-      sources: [],
-      articles: [],
-      newsType: 'top',
+    sources: [],
+    articles: [],
+    newsType: 'top',
   };
 
   it('children should be 2', () => {
@@ -38,12 +40,30 @@ describe('<Dasdboard /> component\'s', () => {
     wrapper.instance().changeSort('cnn-news', 'genetal');
     expect(spyActionGetArticles.called).toBeTruthy();
   });
-  it('Latest', () => {
+  it('When updateType is called, the component state updates to "latest"', () => {
     wrapper.instance().updateType('latest');
     wrapper.state = {
       newsType: 'latest',
     };
     expect(wrapper.state.newsType).toBe('latest');
+  });
+  it('When updateArticle is called, the component state updates to from store which is still null', () => {
+    wrapper.instance().updateArticle();
+    wrapper.state = {
+      articles: store.getArticles(),
+    };
+    expect(store.getArticles()).toBe(null);
+  });
+  it('When updateArticle is called, the component state updates to from store which is still null', () => {
+    wrapper.instance().updateState();
+    store.setArticles('cnn');
+    store.setSources('cnn');
+    wrapper.state = {
+      sources: store.getSources(),
+      articles: store.getArticles(),
+    };
+    expect(store.getSources()).toBe('cnn');
+    expect(store.getArticles()).toBe('cnn');
   });
   it('componentWillUnmount should be called when component is unmounted', () => {
     wrapper.unmount();

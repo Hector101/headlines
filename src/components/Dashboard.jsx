@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <Navbar {...this.props} />
+        <Navbar />
         <div className="row dashboard">
           <SidebarCollapse
             sources={this.state.sources}
