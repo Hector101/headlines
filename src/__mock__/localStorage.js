@@ -1,16 +1,17 @@
+const localStorageMock = (() => {
+  let store = {};
 
-let localStorage = {};
-export default {
-  setItem(key, value) {
-    Object.assign(localStorage, { [key]: value });
-  },
-  getItem(key) {
-    return localStorage[key];
-  },
-  removeItem(key) {
-    delete localStorage[key];
-  },
-  clear() {
-    localStorage = {};
-  },
-};
+  return {
+    getItem(key) {
+      return store[key] || null;
+    },
+    setItem(key, value) {
+      store[key] = value.toString();
+    },
+    removeItem(key) {
+      delete store[key];
+    },
+  };
+})();
+
+export default localStorageMock;
