@@ -1,7 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
+const dotenv = new Dotenv({
+  path: './.env',
+  safe: false
+});
 
 // setup webpack configuration
 module.exports = {
@@ -39,5 +44,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [hotModuleReplacementPlugin],
+  plugins: [hotModuleReplacementPlugin, dotenv],
 };

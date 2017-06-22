@@ -13,27 +13,33 @@ describe('Sidebar component', () => {
   const wrapper = shallow(<Sidebar sources={sources.sources} />);
   const spyComponentWillRecieveProps = sinon.spy(Sidebar.prototype, 'componentWillReceiveProps');
 
-  it('componentWillReceiveProps should not called until props updates', () => {
-    expect(spyComponentWillRecieveProps.called).toBe(false);
-  });
-  it('componentWillReceiveProps should be called when prop changes', () => {
-    wrapper.setProps({
-      sources: sources.sources,
+  describe('componentWillRecieveProps', () => {
+    it('should not called until props updates', () => {
+      expect(spyComponentWillRecieveProps.called).toBe(false);
     });
-    expect(spyComponentWillRecieveProps.called).toBe(true);
+    it('should be called when prop changes', () => {
+      wrapper.setProps({
+        sources: sources.sources,
+      });
+      expect(spyComponentWillRecieveProps.called).toBe(true);
+    });
   });
-  it('should update state when onChange method is called', () => {
-    const a = {
-      target: {
-        value: 'cnn',
-      },
-    };
-    wrapper.instance().onChange(a);
-    expect(wrapper.state().searchInput).toBe('cnn');
+  describe('onChange method', () => {
+    it('should update state when called', () => {
+      const event = {
+        target: {
+          value: 'cnn',
+        },
+      };
+      wrapper.instance().onChange(event);
+      expect(wrapper.state().searchInput).toBe('cnn');
+    });
   });
-  it('should update "sortBysAvailabale" and "id" class variables when setSortBysAvailabale method is called', () => {
-    wrapper.instance().setSortBysAvailabale(['top', 'lastest'], 'cnn');
-    expect(wrapper.instance().sortBysAvailabale).toEqual(['top', 'lastest']);
-    expect(wrapper.instance().id).toEqual('cnn');
+  describe('should update "sortBysAvailabale" and "id" class variables', () => {
+    it('when setSortBysAvailabale method is called', () => {
+      wrapper.instance().setSortBysAvailabale(['top', 'lastest'], 'cnn');
+      expect(wrapper.instance().sortBysAvailabale).toEqual(['top', 'lastest']);
+      expect(wrapper.instance().id).toEqual('cnn');
+    });
   });
 });

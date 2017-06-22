@@ -1,7 +1,11 @@
 import React from 'react';
+
+
 /**
- * create the Sidebar component
- * @Constructor
+ * Sidebar component for the desktop view.
+ * Renders the new sources from the API
+ * @class Sidebar
+ * @extends {React.Component}
  */
 class Sidebar extends React.Component {
 
@@ -15,11 +19,14 @@ class Sidebar extends React.Component {
     this.sortBysAvailabale = ['Top']; // Initailize abc news available sort by value
     this.id = null; // initialize news source id to null
   }
+  
   /**
    * call when props from parent component updates
    * and will the set state in this component with
    * updated value
    * @param {Object} nextProps
+   *
+   * @memberof Sidebar
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -30,10 +37,12 @@ class Sidebar extends React.Component {
   /**
    * get value from text input to update value
    * in component state
-   * @param {Object} e
+   * @param {Object} event
+   *
+   * @memberof Sidebar
    */
-  onChange(e) {
-    const value = e.target.value;
+  onChange(event) {
+    const value = event.target.value;
     this.setState({
       searchInput: value,
     });
@@ -44,6 +53,8 @@ class Sidebar extends React.Component {
    * the class variable
    * @param {String} available
    * @param {String} newsId
+   *
+   * @memberof Sidebar
    */
   setSortBysAvailabale(available, newsId) {
     this.sortBysAvailabale = available;
@@ -51,14 +62,20 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const userDetail = JSON.parse(localStorage.getItem('userDetail')); // get user details from local storage
+    /**
+     * get user details saved in the local storage,
+     * parsing the json value to an object
+     */
+    const userDetail = JSON.parse(localStorage.getItem('userDetail'));
 
     /**
      * loop data returned from api call and render each
      * value in to the DOM.
      */
-    const list = this.state.sources.filter(source =>
-    (source.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) >= 0))
+    const sourceFilter = this.state.sources.filter(source =>
+    (source.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) >= 0));
+
+    const list = sourceFilter.length === 0 ? <div className="collection-item center notfound">No Search Result</div> : sourceFilter
     .map((eachSource, i) => {
       if (eachSource.init) {
         return (<div
@@ -74,7 +91,7 @@ class Sidebar extends React.Component {
         role="link"
         tabIndex={i}
         onClick={() => {
-          this.props.getSingleArticle(eachSource.id, eachSource.name);
+          this.props.getSingleSource(eachSource.id, eachSource.name);
           this.setSortBysAvailabale(eachSource.sortBysAvailable, eachSource.id);
         }}
         key={eachSource.id}
@@ -87,10 +104,29 @@ class Sidebar extends React.Component {
      * loop the array contaiining availaable sort by
      * value of a particlular new source.
      */
-    const sortBy = this.sortBysAvailabale.map((value, index) => (
-
-      <p key={index.toString()} className="col s6">
-        <input
+    const sortBy = this.sortBysAvailabale.map((value, index) => {
+      if (value !== 'latest') {
+        return (
+          <p key={index.toString()} className="col s6">
+            <input
+          className="with-gap"
+          defaultChecked
+          name="select"
+          type="radio"
+          id={value}
+          onClick={() => {
+            this.props.changeSort(this.id, value);
+            this.props.updateType(value);
+          }
+        }
+        />
+            <label htmlFor={value}>{value.toUpperCase()}</label>
+          </p>
+        );
+      }
+      return (
+        <p key={index.toString()} className="col s6">
+          <input
           className="with-gap"
           name="select"
           type="radio"
@@ -101,9 +137,10 @@ class Sidebar extends React.Component {
           }
         }
         />
-        <label htmlFor={value}>{value.toUpperCase()}</label>
-      </p>
-    ));
+          <label htmlFor={value}>{value.toUpperCase()}</label>
+        </p>
+      );
+    });
     return (
       <div className="col s12 m4 l3 fixed sidebar hide-on-small-only #efebe9 brown lighten-5">
         <div className="sidebar-inner">
@@ -138,7 +175,7 @@ class Sidebar extends React.Component {
                     />
                     <label className="label-icon" htmlFor="search">
                       <i className="material-icons">search</i></label>
-                    <i className="material-icons">close</i>
+                    <i className="material-icons clear-text">close</i>
                   </div>
                 </form>
               </div>

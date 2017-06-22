@@ -1,9 +1,8 @@
 import React from 'react';
-// import action creators and store
 import store from '../flux/store/store';
 import Actions from '../flux/actions/Actions';
 
-// import other componetns
+
 import Sidebar from './Sidebar';
 import Mainbar from './Mainbar';
 import SidebarCollapse from './SidebarCollapse';
@@ -11,8 +10,10 @@ import Navbar from './Navbar';
 
 
 /**
- * create dashboard component
- * @Component {Onject} props
+ * Dashboard component, the parent component
+ * of the Sidebar and Mainbar Component
+ * @class Dashboard
+ * @extends {React.Component}
  */
 class Dashboard extends React.Component {
   constructor(props) {
@@ -30,11 +31,15 @@ class Dashboard extends React.Component {
     this.updateState = this.updateState.bind(this);
     this.updateArticle = this.updateArticle.bind(this);
     this.updateType = this.updateType.bind(this);
-    this.getSingleArticle = this.getSingleArticle.bind(this);
+    this.getSingleSource = this.getSingleSource.bind(this);
   }
 
   /**
-   * Method called when component mounts
+   * Called when component mounts.
+   * Creates an action to get the news sources from the web API to dispatch to the store
+   * Creates an action to get articles from ABC news channel
+   * Call class method this.Change to update the component state
+   * @memberof Dashboard
    */
   componentDidMount() {
     Actions.getSources();
@@ -45,6 +50,7 @@ class Dashboard extends React.Component {
   /**
    * remove this.upDatestate from the store
    * event listener before component unmounts
+   * @memberof Dashboard
    */
   componentWillUnmount() {
     store.removeListener('change', this.updateState);
@@ -53,18 +59,19 @@ class Dashboard extends React.Component {
   /**
    * call to check if there's a change of value
    * in the store
+   * @memberof Dashboard
    */
   onChange() {
     store.on('change', this.updateState);
   }
 
   /**
-   * dispatch an action to get news from
-   * a source and news souce name
+   * Creates an action to get articles from @param sourceName news channel
+   * * Creates an action to get source title from @param sourceTitle news channel
    * @param {String} sourceName
    * @param {String} sourceTitle
    */
-  getSingleArticle(sourceName, sourceTitle) {
+  getSingleSource(sourceName, sourceTitle) {
     Actions.getArticles(sourceName);
     Actions.selectedSource(sourceTitle);
     store.on('change', this.updateArticle);
@@ -72,6 +79,7 @@ class Dashboard extends React.Component {
 
   /**
    * get news source by available type
+   * "top" or "latest"
    * @param {String} newsId
    * @param {String} newsType
    */
@@ -80,7 +88,8 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * set selected sort
+   * get the available sortBy array and update
+   * the state with @param sortBy
    * @param {String} sortBy
    */
   updateType(sortBy) {
@@ -90,8 +99,9 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * set state of article when uptated
+   * update state of article when uptated
    * in app store
+   * @memberof Dashboard
    */
   updateArticle() {
     this.setState({
@@ -103,6 +113,7 @@ class Dashboard extends React.Component {
    * on app inital load, get sources and article
    * from abc news and pass each as props to sidebar
    * and mainbar components
+   * @memberof Dashboard
    */
   updateState() {
     if (store.getSources() !== null && store.getArticles() !== null) {
@@ -119,13 +130,13 @@ class Dashboard extends React.Component {
         <div className="row dashboard">
           <SidebarCollapse
             sources={this.state.sources}
-            getSingleArticle={this.getSingleArticle}
+            getSingleSource={this.getSingleSource}
             changeSort={this.changeSort}
             updateType={this.updateType}
           />
           <Sidebar
             sources={this.state.sources}
-            getSingleArticle={this.getSingleArticle}
+            getSingleSource={this.getSingleSource}
             changeSort={this.changeSort}
             updateType={this.updateType}
           />

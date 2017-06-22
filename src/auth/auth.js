@@ -1,9 +1,6 @@
 import Actions from '../flux/actions/Actions';
 
 class Auth {
-  /**
-   * creates an instance of the Auth class
-   */
   constructor() {
     this.ifLoggedin = this.ifLoggedin.bind(this);
   }
@@ -26,7 +23,8 @@ class Auth {
 
   /**
    * set values authentication value to local strorage to false,
-   * to sign user out.
+   * to allow user to signout of the app.
+   * @memberof Auth
    */
   signOut() {
     localStorage.removeItem('auth');
@@ -37,6 +35,9 @@ class Auth {
   /**
    * Method checks if user is logged in to return true,
    * else return false to log user out
+   * @returns true if auth object exist in the local staorage
+   * @returns false if auth object doesn't exist in the local staorage
+   * @memberof Auth
    */
   ifLoggedin() {
     if (localStorage.getItem('auth')) {

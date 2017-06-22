@@ -2,8 +2,9 @@ import React from 'react';
 import store from '../flux/store/store';
 
 /**
- * create the Sidebar component
- * @Constructor
+ * React component that renders the news articles
+ * @class Content
+ * @extends {React.Component}
  */
 class Content extends React.Component {
   constructor(props) {

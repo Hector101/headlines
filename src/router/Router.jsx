@@ -5,6 +5,15 @@ import Dashboard from '../components/Dashboard';
 import Auth from '../auth/auth';
 import store from '../flux/store/store';
 
+
+/**
+ * React router component.
+ * contains the logic to route users
+ * to a particular route base on the available
+ * authentication value
+ * @class Routes
+ * @extends {React.Component}
+ */
 class Routes extends React.Component {
   constructor(props) {
     super(props);
@@ -19,12 +28,33 @@ class Routes extends React.Component {
     }
     this.updateAuth = this.updateAuth.bind(this);
   }
+
+  /**
+   * Called when component is about to mount.
+   * listens for a change of value in the store
+   * to call the method updateAuth, which
+   * updates the component state with the new value
+   * from the store
+   * @memberof Routes
+   */
   componentWillMount() {
     store.on('change', this.updateAuth);
   }
+
+  /**
+   * remove this.updateAuth from the store
+   * event listener before component unmounts
+   * @memberof Routes
+   */
   componentWillUnmount() {
     store.removeListener('change', this.updateAuth);
   }
+  
+  /**
+   * when called, sets the component
+   * state with the new value from the local storage
+   * @memberof Routes
+   */
   updateAuth() {
     this.setState({
       auth: Auth.ifLoggedin(),

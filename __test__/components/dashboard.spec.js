@@ -19,54 +19,70 @@ describe('Dasdboard component\'s', () => {
     newsType: 'top',
   };
 
-  it('children should be 2', () => {
-    expect(wrapper.children()).toHaveLength(2);
+  describe('children', () => {
+    it('children should be 2', () => {
+      expect(wrapper.children()).toHaveLength(2);
+    });
   });
-  it('componentDidMount should be called after mount', () => {
-    wrapper.instance().componentDidMount();
-    expect(spyDidMount.calledOnce).toBe(true);
+  describe('componentDidMount', () => {
+    it('should be called once after mount', () => {
+      wrapper.instance().componentDidMount();
+      expect(spyDidMount.calledOnce).toBe(true);
+    });
   });
-  it('state property "articles" should initialize with an empty object', () => {
-    expect(wrapper.state.articles).toHaveLength(0);
+  describe('state property', () => {
+    it('"articles" should initialize with an empty object', () => {
+      expect(wrapper.state.articles).toHaveLength(0);
+    });
+    it('"sources" should initialize with an empty object', () => {
+      expect(wrapper.state.sources).toHaveLength(0);
+    });
   });
-  it('state property "sources" should initialize with an empty object', () => {
-    expect(wrapper.state.sources).toHaveLength(0);
+  describe('getSingleSource method', () => {
+    it('should call the getArticles action created when called', () => {
+      wrapper.instance().getSingleSource('cnn-news', 'CNN News');
+      expect(spyActionGetArticles.called).toBeTruthy();
+    });
   });
-  it('getSingleArticle method should call the getArticles action created when called', () => {
-    wrapper.instance().getSingleArticle('cnn-news', 'CNN News');
-    expect(spyActionGetArticles.called).toBeTruthy();
+  describe('changeSort method', () => {
+    it('should call the getArticles action created when called', () => {
+      wrapper.instance().changeSort('cnn-news', 'genetal');
+      expect(spyActionGetArticles.called).toBeTruthy();
+    });
   });
-  it('changeSort method should call the getArticles action created when called', () => {
-    wrapper.instance().changeSort('cnn-news', 'genetal');
-    expect(spyActionGetArticles.called).toBeTruthy();
+  describe('updateType is called', () => {
+    it('the component state updates to "latest"', () => {
+      wrapper.instance().updateType('latest');
+      wrapper.state = {
+        newsType: 'latest',
+      };
+      expect(wrapper.state.newsType).toBe('latest');
+    });
   });
-  it('When updateType is called, the component state updates to "latest"', () => {
-    wrapper.instance().updateType('latest');
-    wrapper.state = {
-      newsType: 'latest',
-    };
-    expect(wrapper.state.newsType).toBe('latest');
+  describe('updateArticle is called', () => {
+    it('the component state updates to from store which is still null', () => {
+      wrapper.instance().updateArticle();
+      wrapper.state = {
+        articles: store.getArticles(),
+      };
+      expect(store.getArticles()).toBe(null);
+    });
+    it('the component state updates to from store which is still null', () => {
+      wrapper.instance().updateState();
+      store.setArticles('cnn');
+      store.setSources('cnn');
+      wrapper.state = {
+        sources: store.getSources(),
+        articles: store.getArticles(),
+      };
+      expect(store.getSources()).toBe('cnn');
+      expect(store.getArticles()).toBe('cnn');
+    });
   });
-  it('When updateArticle is called, the component state updates to from store which is still null', () => {
-    wrapper.instance().updateArticle();
-    wrapper.state = {
-      articles: store.getArticles(),
-    };
-    expect(store.getArticles()).toBe(null);
-  });
-  it('When updateArticle is called, the component state updates to from store which is still null', () => {
-    wrapper.instance().updateState();
-    store.setArticles('cnn');
-    store.setSources('cnn');
-    wrapper.state = {
-      sources: store.getSources(),
-      articles: store.getArticles(),
-    };
-    expect(store.getSources()).toBe('cnn');
-    expect(store.getArticles()).toBe('cnn');
-  });
-  it('componentWillUnmount should be called when component is unmounted', () => {
-    wrapper.unmount();
-    expect(spyWillUnount.calledOnce).toBe(true);
+  describe('componentWillUnmount', () => {
+    it('should be called when component is unmounted', () => {
+      wrapper.unmount();
+      expect(spyWillUnount.calledOnce).toBe(true);
+    });
   });
 });

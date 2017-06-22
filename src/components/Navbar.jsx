@@ -5,7 +5,10 @@ import GoogleLogin from 'react-google-login';
 import Auth from '../auth/auth';
 
 /**
- * Navbar react componet
+ * Navbar component containing the signin
+ * and signout logic and user interface
+ * @class Navbar
+ * @extends {React.Component}
  */
 class Navbar extends React.Component {
   /**
@@ -18,12 +21,13 @@ class Navbar extends React.Component {
   }
 
   /**
-  * sign user on fire
-  */
+   * Signout method that when called, calls
+   * a method from the Auth module
+   * @memberof Navbar
+   */
   signOut() {
     Auth.signOut();
   }
-  
   render() {
     return (
       <nav className="navbar-fixed #616161 grey darken-2">
@@ -39,7 +43,7 @@ class Navbar extends React.Component {
             <li>
               {
               !Auth.ifLoggedin() ? (<GoogleLogin
-                clientId={'280387982886-h6rndqluquvvgujtos24h4vbkjv7rq6l.apps.googleusercontent.com'}
+                clientId={`${process.env.CLIENT_ID}`}
                 buttonText="Sign in"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}

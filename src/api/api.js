@@ -3,6 +3,7 @@ import axios from 'axios';
 /**
  * define class to hold method that calls
  * the api with passed in url parameters
+ * @class Api
  */
 class Api {
   getSources(url) {

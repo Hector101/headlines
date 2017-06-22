@@ -10,8 +10,8 @@ import Api from '../../api/api';
 class Actions {
 
   /**
-   * call api and dispach retured data
-   * to the app store
+   * call api and dispach retured object
+   * containing news sources to the app store
    * @memberof Actions
    */
   getSources() {
@@ -27,8 +27,8 @@ class Actions {
   }
 
   /**
-   * get articles from a source and dispatch data
-   * to the app store
+   * get articles from a source and dispatch returned
+   * object containing articles to the app store
    * @param {String}
    * @param {string} sortBy
    */
@@ -38,7 +38,7 @@ class Actions {
      * method to call api with sort by attribute
      */
     if (sortBy && id) {
-      Api.getArticles(`https://newsapi.org/v1/articles?source=${id}&sortBy=${sortBy}&apiKey=f63ae17494d7495aa6fafba403818f20`)
+      Api.getArticles(`https://newsapi.org/v1/articles?source=${id}&sortBy=${sortBy}&apiKey=${process.env.NEWS_API}`)
     .then(articles => Dispatcher.dispatch({
       actionType: ActionTypes.ARTICLES,
       articles,
@@ -48,7 +48,7 @@ class Actions {
       error,
     }));
     } else if (!sortBy) {
-      Api.getArticles(`https://newsapi.org/v1/articles?source=${id}&apiKey=f63ae17494d7495aa6fafba403818f20`)
+      Api.getArticles(`https://newsapi.org/v1/articles?source=${id}&apiKey=${process.env.NEWS_API}`)
       .then(articles => Dispatcher.dispatch({
         actionType: ActionTypes.ARTICLES,
         articles,
