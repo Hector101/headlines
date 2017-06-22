@@ -44,6 +44,8 @@ class SidebarCollapse extends React.Component {
    * the class variable
    * @param {String} available
    * @param {String} newsId
+   *
+   * @memberof Sidebar
    */
   setSortBysAvailabale(available, newsId) {
     this.sortBysAvailabale = available;
@@ -51,14 +53,20 @@ class SidebarCollapse extends React.Component {
   }
 
   render() {
-    const userDetail = JSON.parse(localStorage.getItem('userDetail')); // get user details from local storage
+   /**
+     * get user details saved in the local storage,
+     * parsing the json value to an object
+     */
+    const userDetail = JSON.parse(localStorage.getItem('userDetail'));
 
     /**
      * loop data returned from api call and render each
      * value in to the DOM.
      */
-    const list = this.state.sources.filter(source =>
-    (source.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) >= 0))
+    const sourceFilter = this.state.sources.filter(source =>
+    (source.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) >= 0));
+
+    const list = sourceFilter.length === 0 ? <div className="collection-item center notfound">No Search Result</div> : sourceFilter
     .map((eachSource, i) => {
       if (eachSource.init) {
         return (<div
@@ -74,11 +82,11 @@ class SidebarCollapse extends React.Component {
         role="link"
         tabIndex={i}
         onClick={() => {
-          this.props.getSingleArticle(eachSource.id, eachSource.name);
+          this.props.getSingleSource(eachSource.id, eachSource.name);
           this.setSortBysAvailabale(eachSource.sortBysAvailable, eachSource.id);
         }}
         key={eachSource.id}
-        className="collection-item list2 blue-grey-text text-darken-1"
+        className="collection-item list blue-grey-text text-darken-1"
       >{eachSource.name}
       </div>);
     });
