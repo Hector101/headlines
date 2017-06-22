@@ -1,5 +1,5 @@
 
-### News Headlines
+## News Headlines
 
 ## Description
 + Built with React and Flux Architecture
