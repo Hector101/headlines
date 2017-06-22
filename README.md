@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Hector101/headlines.svg?branch=development)](https://travis-ci.org/Hector101/headlines)
 
 ## News Headlines
 
