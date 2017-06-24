@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Hector101/headlines.svg?branch=development)](https://travis-ci.org/Hector101/headlines)
 [![Code Climate](https://codeclimate.com/github/Hector101/headlines/badges/gpa.svg)](https://codeclimate.com/github/Hector101/headlines)
-[![Test Coverage](https://codeclimate.com/github/Hector101/headlines/badges/coverage.svg)](https://codeclimate.com/github/Hector101/headlines/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/Hector101/headlines/badge.svg)](https://coveralls.io/github/Hector101/headlines)
 
 ## News Headlines
 
