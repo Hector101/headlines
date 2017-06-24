@@ -1,8 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
 
-// setup webpack configuration
+/**
+ * webpack configuration file used to
+ * specify the required setup needed to
+ * run webpack in this project
+ */
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -36,9 +39,5 @@ module.exports = {
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(true),
     }),
-    new Dotenv({
-      path: './.env',
-      safe: false
-    })
   ],
 };
