@@ -15,7 +15,7 @@ class Auth {
     if (!signInResonse.error) {
       localStorage.setItem('auth', true);
       localStorage.setItem('userDetail', JSON.stringify(signInResonse.profileObj));
-      Actions.getAuth(this.ifLoggedin);
+      Actions.getAuth(this.ifLoggedin());
     } else {
       localStorage.removeItem('auth');
     }
@@ -29,7 +29,7 @@ class Auth {
   signOut() {
     localStorage.removeItem('auth');
     localStorage.removeItem('userDetail');
-    Actions.getAuth(this.ifLoggedin);
+    Actions.getAuth(this.ifLoggedin());
   }
 
   /**
