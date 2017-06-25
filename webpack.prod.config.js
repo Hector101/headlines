@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const uglifyWebpack = require('uglifyjs-webpack-plugin');
 
 /**
  * webpack configuration file used to
@@ -39,5 +40,6 @@ module.exports = {
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(true),
     }),
+    new uglifyWebpack(),
   ],
 };
