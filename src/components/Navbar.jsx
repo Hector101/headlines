@@ -43,7 +43,7 @@ class Navbar extends React.Component {
             <li>
               {
               !Auth.ifLoggedin() ? (<GoogleLogin
-                clientId={`${process.env.CLIENT_ID}`}
+                clientId={'280387982886-4io3oopkfshu7thful7f74tm60k189rf.apps.googleusercontent.com}'}
                 buttonText="Sign in"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
