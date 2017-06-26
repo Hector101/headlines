@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const uglifyWebpack = require('uglifyjs-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 /**
  * webpack configuration file used to
