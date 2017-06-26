@@ -38,7 +38,11 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        CLIENT_ID: JSON.stringify(process.env.CLIENT_ID),
+        NEWS_API: JSON.stringify(process.env.NEWS_API),
+      },
     }),
     new uglifyWebpack(),
   ],
