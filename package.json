@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js --progress --open",
     "start": "node server.js",
-    "postinstall": "NODE_ENV=production webpack -p --config webpack.prod.config.js --progress",
+    "postinstall": "webpack -p --config webpack.prod.config.js --progress",
     "test": "jest"
   },
   "jest": {

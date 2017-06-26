@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
 
 /**
  * webpack configuration file used to
@@ -38,11 +37,11 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
-    new Dotenv({
-      path: './.env',
-      safe: false
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        CLIENT_ID: JSON.stringify(process.env.CLIENT_ID),
+        NEWS_API: JSON.stringify(process.env.NEWS_API),
+      }
     }),
   ],
 };
