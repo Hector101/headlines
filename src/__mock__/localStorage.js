@@ -1,5 +1,5 @@
 const localStorageMock = (() => {
-  let store = {};
+  const store = {};
 
   return {
     getItem(key) {
