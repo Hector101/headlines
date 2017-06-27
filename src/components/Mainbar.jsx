@@ -30,30 +30,28 @@ class Content extends React.Component {
     });
   }
   render() {
+    const loading = (<div
+          className="collection-item center"
+        >
+      <div className="preloader-wrapper big active">
+        <div className="spinner-layer spinner-blue-only">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div>
+          <div className="gap-patch">
+            <div className="circle" />
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+      </div>
+    </div>);
     /**
      * loop data returned from api call and render each
      * value in to the DOM.
      */
-    const list = this.state.articles.map((article, i) => {
-      if (article.init) {
-        return (<div
-          key={article.id}
-          className="collection-item center"
-        >
-          <div className="preloader-wrapper big active">
-            <div className="spinner-layer spinner-blue-only">
-              <div className="circle-clipper left">
-                <div className="circle" />
-              </div>
-              <div className="gap-patch">
-                <div className="circle" />
-              </div>
-              <div className="circle-clipper right">
-                <div className="circle" />
-              </div>
-            </div>
-          </div></div>);
-      }
+    const list = this.props.articles === null ? loading : this.props.articles.map((article, i) => {
       return (
         <div key={i.toString()} className="row">
           <div className="col s12">

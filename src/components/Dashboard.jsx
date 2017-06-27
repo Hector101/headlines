@@ -19,8 +19,8 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sources: [],
-      articles: [],
+      sources: [{ init: true, id: 0, name: '' }],
+      articles: null,
       newsType: 'Top',
     };
 
