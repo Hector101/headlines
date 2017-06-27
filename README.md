@@ -57,6 +57,7 @@ Install nodejs version 6 and above
   +  `$ npm install`
 +  Run the app
   +  `$ npm dev`
++ To uset app visit https://news-feed-headline.herokuapp.com/
 
 ## Running the tests
 +  The tests were written using Enzyme, Sinon, and Jest.
