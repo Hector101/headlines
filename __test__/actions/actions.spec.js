@@ -5,7 +5,7 @@ import Api from '../../src/api/api';
 import store from '../../src/flux/store/store';
 import mockSources from '../../src/__mock__/sources.json';
 import mockArticles from '../../src/__mock__/articles.json';
-import Auth from '../../src/auth/auth';
+// import Auth from '../../src/auth/auth';
 
 jest.mock('../../src/api/api', () => ({
   getSources: () => Promise.resolve({ sources: mockSources.sources }),

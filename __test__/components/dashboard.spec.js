@@ -6,21 +6,16 @@ import Actions from '../../src/flux/actions/Actions';
 import localStorageMock from '../../src/__mock__/localStorage';
 import store from '../../src/flux/store/store';
 
-describe('Dasdboard component\'s', () => {
+window.localStorage = localStorageMock;
+
+describe('Dasdboard component', () => {
   const wrapper = shallow(<Dashboard />);
   const spyDidMount = sinon.spy(Dashboard.prototype, 'componentDidMount');
   const spyWillUnount = sinon.spy(Dashboard.prototype, 'componentWillUnmount');
   const spyActionGetArticles = sinon.spy(Actions, 'getArticles');
-  window.localStorage = localStorageMock;
-  // Mock Dashboard component inital state
-  wrapper.state = {
-    sources: [],
-    articles: [],
-    newsType: 'top',
-  };
 
-  describe('children', () => {
-    it('children should be 2', () => {
+  describe('should contain', () => {
+    it('2 children', () => {
       expect(wrapper.children()).toHaveLength(2);
     });
   });
@@ -31,11 +26,11 @@ describe('Dasdboard component\'s', () => {
     });
   });
   describe('state property', () => {
-    it('"articles" should initialize with an empty object', () => {
-      expect(wrapper.state.articles).toHaveLength(0);
+    it('"articles" should initialize with a value null', () => {
+      expect(wrapper.state().articles).toBe(null);
     });
-    it('"sources" should initialize with an empty object', () => {
-      expect(wrapper.state.sources).toHaveLength(0);
+    it('"sources" should initialize with an array of length 1', () => {
+      expect(wrapper.state().sources.length).toEqual(1);
     });
   });
   describe('getSingleSource method', () => {
