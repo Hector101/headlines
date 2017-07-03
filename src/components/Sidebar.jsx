@@ -15,15 +15,14 @@ class Sidebar extends React.Component {
       sources: [{ init: true, id: 0, name: '' }],
       searchInput: '',
     };
-    this.onChange = this.onChange.bind(this); // bind coChange class method to this component
-    this.sortBysAvailabale = ['Top']; // Initailize abc news available sort by value
-    this.id = null; // initialize news source id to null
+    this.onChange = this.onChange.bind(this);
+    this.sortBysAvailabale = ['Top'];
+    this.id = null;
   }
-  
+
   /**
-   * call when props from parent component updates
-   * and will the set state in this component with
-   * updated value
+   * update component state property
+   * "sources" with the updated values
    * @param {Object} nextProps
    *
    * @memberof Sidebar
@@ -35,8 +34,8 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * get value from text input to update value
-   * in component state
+   * get value from text input to update
+   * state propery "searchInput"
    * @param {Object} event
    *
    * @memberof Sidebar
@@ -49,7 +48,7 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * call to save value from api to
+   * set available sortBy array from api to
    * the class variable
    * @param {String} available
    * @param {String} newsId
@@ -63,14 +62,13 @@ class Sidebar extends React.Component {
 
   render() {
     /**
-     * get user details saved in the local storage,
-     * parsing the json value to an object
+     * get user details saved in the local storage
      */
     const userDetail = JSON.parse(localStorage.getItem('userDetail'));
 
     /**
-     * loop data returned from api call and render each
-     * value in to the DOM.
+     * get sources array from api, append each
+     * value to the <li> element.
      */
     const sourceFilter = this.state.sources.filter(source =>
     (source.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) >= 0));
@@ -101,8 +99,8 @@ class Sidebar extends React.Component {
     });
 
     /**
-     * loop the array contaiining availaable sort by
-     * value of a particlular new source.
+     * get available sortBy news source
+     * and append each value to checkbox.
      */
     const sortBy = this.sortBysAvailabale.map((value, index) => {
       if (value !== 'latest') {

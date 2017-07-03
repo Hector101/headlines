@@ -5,7 +5,6 @@ import Actions from '../flux/actions/Actions';
 
 import Sidebar from './Sidebar';
 import Mainbar from './Mainbar';
-import SidebarCollapse from './SidebarCollapse';
 import Navbar from './Navbar';
 
 
@@ -25,8 +24,7 @@ class Dashboard extends React.Component {
     };
 
     /**
-     * bind class methods to this
-     * particular component
+     * bind class methods to component
      */
     this.updateState = this.updateState.bind(this);
     this.updateArticle = this.updateArticle.bind(this);
@@ -35,10 +33,8 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * Called when component mounts.
-   * Creates an action to get the news sources from the web API to dispatch to the store
-   * Creates an action to get articles from ABC news channel
-   * Call class method this.Change to update the component state
+   * when components mounts, create an action
+   * to get news sources and news articles.
    * @memberof Dashboard
    */
   componentDidMount() {
@@ -48,7 +44,7 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * remove this.upDatestate from the store
+   * remove this.upDatestate from the store,
    * event listener before component unmounts
    * @memberof Dashboard
    */
@@ -57,8 +53,7 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * call to check if there's a change of value
-   * in the store
+   * check if store updates
    * @memberof Dashboard
    */
   onChange() {
@@ -66,8 +61,7 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * Creates an action to get articles from @param sourceName news channel
-   * * Creates an action to get source title from @param sourceTitle news channel
+   * get articles from news channel
    * @param {String} sourceName
    * @param {String} sourceTitle
    */
@@ -89,7 +83,7 @@ class Dashboard extends React.Component {
 
   /**
    * get the available sortBy array and update
-   * the state with @param sortBy
+   * the state property newsType
    * @param {String} sortBy
    */
   updateType(sortBy) {
@@ -99,8 +93,8 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * update state of article when uptated
-   * in app store
+   * update state property "article"
+   * when uptated in app store.
    * @memberof Dashboard
    */
   updateArticle() {
@@ -110,9 +104,8 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * on app inital load, get sources and article
-   * from abc news and pass each as props to sidebar
-   * and mainbar components
+   * get sources and articles
+   * and set as component state properties
    * @memberof Dashboard
    */
   updateState() {
@@ -128,12 +121,6 @@ class Dashboard extends React.Component {
       <div>
         <Navbar />
         <div className="row dashboard">
-          <SidebarCollapse
-            sources={this.state.sources}
-            getSingleSource={this.getSingleSource}
-            changeSort={this.changeSort}
-            updateType={this.updateType}
-          />
           <Sidebar
             sources={this.state.sources}
             getSingleSource={this.getSingleSource}

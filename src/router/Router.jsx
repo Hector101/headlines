@@ -6,14 +6,7 @@ import Auth from '../auth/auth';
 import store from '../flux/store/store';
 
 
-/**
- * React router component.
- * contains the logic to route users
- * to a particular route base on the available
- * authentication value
- * @class Routes
- * @extends {React.Component}
- */
+
 class Routes extends React.Component {
   constructor(props) {
     super(props);
@@ -30,11 +23,7 @@ class Routes extends React.Component {
   }
 
   /**
-   * Called when component is about to mount.
-   * listens for a change of value in the store
-   * to call the method updateAuth, which
-   * updates the component state with the new value
-   * from the store
+   * check if store updates
    * @memberof Routes
    */
   componentWillMount() {
@@ -51,8 +40,8 @@ class Routes extends React.Component {
   }
   
   /**
-   * when called, sets the component
-   * state with the new value from the local storage
+   * set state property "auth"
+   * with authentication value
    * @memberof Routes
    */
   updateAuth() {

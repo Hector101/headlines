@@ -2,12 +2,7 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher/dispatcher';
 import ActionTypes from '../actions/ActionTypes';
 
-/**
- * Store class listens for changes from
- * action dispatchers to update it's internal data.
- * @class Store
- * @extends {EventEmitter}
- */
+
 class Store extends EventEmitter {
   constructor(props) {
     super(props);
@@ -19,10 +14,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when action is dispatchs a payload with action type
-   * SOURCES, setSources method updates the existing
-   * value with the payload and emits an event
-   * to listeners to get the updataed value.
+   * set sources from action and emit event
    * @param {Object} sources
    *
    * @memberof Store
@@ -33,10 +25,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when action is dispatchs a payload with action type
-   * ARTICLES, setArticles method updates the existing
-   * value with the payload and emits an event
-   * to listeners to get the updataed value.
+   * set articles and emit event
    * @param {Object} articles
    *
    * @memberof Store
@@ -47,10 +36,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when action is dispatchs a payload with action type
-   * SELECTED, setSelected method updates the existing
-   * value with the payload and emits an event
-   * to listeners to get the updataed value.
+   * set selected sources and emit event
    * @param {String} name
    *
    * @memberof Store
@@ -61,9 +47,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when called, sets the updated value
-   * to the dispatched payload and emits an event
-   * to indicate there's been a change.
+   * set authentication value and emit event
    * @param {Boolean} authValue
    *
    * @memberof Store
@@ -74,8 +58,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when called returns the current
-   * value of the class variable this.sources
+   * get sources
    * @returns {Boolean}
    *
    * @memberof Store
@@ -85,8 +68,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when called returns the current
-   * value of the class variable this.articles
+   * get articles
    * @returns {Array}
    *
    * @memberof Store
@@ -96,8 +78,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when called returns the current
-   * value of the class variable this.sources
+   * get selected articles
    * @returns {Array}
    *
    * @memberof Store
@@ -107,8 +88,7 @@ class Store extends EventEmitter {
   }
 
   /**
-   * when called returns the current
-   * value of the class variable this.auth
+   * get authentication value
    * @returns {Boolean}
    *
    * @memberof Store
@@ -118,9 +98,8 @@ class Store extends EventEmitter {
   }
 
   /**
-   * callback function that is registered
-   * to the dispatcher to update the store
-   * value, when an action is created.
+   * set payload based on action action type
+   * from dispatcher
    * @param {Object} action
    *
    * @memberof Store
@@ -150,9 +129,7 @@ class Store extends EventEmitter {
 const store = new Store();
 
 /**
- * register the store instance method
- * to the dispatchActions which calls the set... methods
- * with the payload as the parameter
+ * register store instance method to dispatcher
  */
 Dispatcher.register(store.dispatchActions.bind(store));
 

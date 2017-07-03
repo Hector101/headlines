@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '../public/sass/style.scss';
-import '../public/js/logic';
+import './sass/style.scss';
 import Router from './router/Router';
 
 

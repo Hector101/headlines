@@ -1,5 +1,6 @@
 import React from 'react';
 import store from '../flux/store/store';
+import MainbarContent from './MainbarContent';
 
 /**
  * React component that renders the news articles
@@ -17,9 +18,9 @@ class Content extends React.Component {
   }
 
   /**
-   * call when props from parent component updates
-   * and will the set state in this component with
-   * updated value
+   * update component state properties
+   * "articles", "selectedArticle" and "newsType"
+   * with the updated values
    * @param {Object} nextProps
    */
   componentWillReceiveProps(nextProps) {
@@ -48,8 +49,8 @@ class Content extends React.Component {
       </div>
     </div>);
     /**
-     * loop data returned from api call and render each
-     * value in to the DOM.
+     * get articles and append
+     * each value in array to the DOM.
      */
     const list = this.props.articles === null ? loading : this.props.articles.map((article, i) => {
       return (
@@ -71,23 +72,7 @@ class Content extends React.Component {
       );
     });
     return (
-      <div className="col s12 m8 l9 content fixed">
-        <div className="row">
-          <div className="col s12">
-            <div className="card #fff white">
-              <div className="card-content white-text">
-                <span
-                  className="grey-text text-darken-2 center"
-                >
-                  <h4>
-                    <span className="light-blue-text text-darken-1">{this.state.newsType.toUpperCase()} News from</span> {this.state.selectedArticle}</h4>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        {list}
-      </div>
+      <MainbarContent list={list} newsType={this.state.newsType} selectedArticle={this.state.selectedArticle} />
     );
   }
 

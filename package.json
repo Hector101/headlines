@@ -6,6 +6,7 @@
     "dev": "webpack-dev-server --config webpack.config.js --progress --open",
     "start": "node server.js",
     "postinstall": "NODE_ENV=production webpack -p --config webpack.prod.config.js --progress",
+    "devBundle": "NODE_ENV=production webpack -p --config webpack.config.js --progress",
     "test": "jest"
   },
   "jest": {

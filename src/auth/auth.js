@@ -6,9 +6,8 @@ class Auth {
   }
 
   /**
-   * set values authentication value to local strorage to true,
-   * to allow user to be authenticated if authentication was
-   * successful, else set to false to log user out.
+   * set authentication value to local strorage to true.
+   * save user details to local storage
    * @param {Object} signInResonse
    */
   signIn(signInResonse) {
@@ -22,8 +21,8 @@ class Auth {
   }
 
   /**
-   * set values authentication value to local strorage to false,
-   * to allow user to signout of the app.
+   * set authentication value to local strorage to false.
+   * remove user details from local storage.
    * @memberof Auth
    */
   signOut() {
@@ -33,10 +32,8 @@ class Auth {
   }
 
   /**
-   * Method checks if user is logged in to return true,
+   * check if user is logged in to return true,
    * else return false to log user out
-   * @returns true if auth object exist in the local staorage
-   * @returns false if auth object doesn't exist in the local staorage
    * @memberof Auth
    */
   ifLoggedin() {

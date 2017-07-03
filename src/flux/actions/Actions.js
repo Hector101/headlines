@@ -10,8 +10,7 @@ import Api from '../../api/api';
 class Actions {
 
   /**
-   * call api and dispach retured object
-   * containing news sources to the app store
+   * dispach news sources to store.
    * @memberof Actions
    */
   getSources() {
@@ -27,8 +26,7 @@ class Actions {
   }
 
   /**
-   * get articles from a source and dispatch returned
-   * object containing articles to the app store
+   * get articles from a source and dispatch to store
    * @param {String}
    * @param {string} sortBy
    */
@@ -61,8 +59,7 @@ class Actions {
   }
 
   /**
-   * dispatch source name passed to this
-   * class method to registered callback in the app store
+   * dispatch source name to store
    * @param {String} sourceName
    */
   selectedSource(sourceName) {
@@ -71,6 +68,11 @@ class Actions {
       sourceName,
     });
   }
+  /**
+   * disptach authentication value to store
+   * @param {String} authValue
+   * @memberof Actions
+   */
   getAuth(authValue) {
     Dispatcher.dispatch({
       actionType: ActionTypes.AUTH,

@@ -6,14 +6,13 @@ import Auth from '../auth/auth';
 
 /**
  * Navbar component containing the signin
- * and signout logic and user interface
+ * and signout logic.
  * @class Navbar
  * @extends {React.Component}
  */
 class Navbar extends React.Component {
   /**
-  * call each time login authentication is either
-  successful or faiiled
+  * Authenticate user
   * @param {Object} response
   */
   responseGoogle(response) {
@@ -21,8 +20,7 @@ class Navbar extends React.Component {
   }
 
   /**
-   * Signout method that when called, calls
-   * a method from the Auth module
+   * signout user
    * @memberof Navbar
    */
   signOut() {
