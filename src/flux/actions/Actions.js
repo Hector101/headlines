@@ -29,8 +29,8 @@ class Actions {
 
   /**
    * @description get articles from a source and dispatch to store
-   * @param {String}
-   * @param {string} sortBy
+   * @param {String} id - new source id
+   * @param {string} sortBy - news sort by id
    * @return {void}
    * @method getArticles
    */
@@ -63,7 +63,7 @@ class Actions {
 
   /**
    * @description dispatch source name to store
-   * @param {String} sourceName
+   * @param {String} sourceName - news source name
    * @return {void}
    * @method selectedSource
    */
@@ -75,7 +75,7 @@ class Actions {
   }
   /**
    * @description disptach authentication value to store
-   * @param {String} authValue
+   * @param {String} authValue - authentication value
    * @memberof Actions
    * @return {void}
    * @method getAuth

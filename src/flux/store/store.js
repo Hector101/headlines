@@ -11,7 +11,7 @@ class Store extends EventEmitter {
 
   /**
    * @description Creates an instance of Store.
-   * @param {Object} props
+   * @param {Object} props - props from parent component
    * @memberof Store
    * @constructs Store
    */
@@ -26,7 +26,7 @@ class Store extends EventEmitter {
 
   /**
    * @description set sources from action and emit event
-   * @param {Object} sources
+   * @param {Object} sources - news source name
    * @return {void}
    * @memberof Store
    * @method setSources
@@ -38,7 +38,7 @@ class Store extends EventEmitter {
 
   /**
    * @description set articles and emit event
-   * @param {Object} articles
+   * @param {Object} articles - news articles
    * @return {void}
    * @memberof Store
    * @method setArticles
@@ -50,7 +50,7 @@ class Store extends EventEmitter {
 
   /**
    * @description set selected sources and emit event
-   * @param {String} name
+   * @param {String} name - news source name
    * @return {void}
    * @memberof Store
    * @method setSelected
@@ -62,7 +62,7 @@ class Store extends EventEmitter {
 
   /**
    * @description set authentication value and emit event
-   * @param {Boolean} authValue
+   * @param {Boolean} authValue - authenticaton value
    * @return {void}
    * @memberof Store
    * @method setAuth
@@ -74,7 +74,7 @@ class Store extends EventEmitter {
 
   /**
    * @description get sources
-   * @return {Boolean}
+   * @return {Array} - list of news sources
    * @memberof Store
    * @method getSources
    */
@@ -84,7 +84,7 @@ class Store extends EventEmitter {
 
   /**
    * @description get articles
-   * @returns {Array}
+   * @returns {Array} - list of news articles
    * @memberof Store
    * @method getArticles
    */
@@ -94,7 +94,7 @@ class Store extends EventEmitter {
 
   /**
    * @description get selected articles
-   * @returns {Array}
+   * @returns {Array} - list of news source available sort by
    * @memberof Store
    * @method getSelected
    */
@@ -104,7 +104,7 @@ class Store extends EventEmitter {
 
   /**
    * @description get authentication value
-   * @returns {Boolean}
+   * @returns {Boolean} - authentication value
    * @memberof Store
    * @method getAuth
    */
@@ -115,9 +115,10 @@ class Store extends EventEmitter {
   /**
    * @description set payload based on action action type
    * from dispatcher
-   * @param {Object} action
+   * @param {Object} action - action creator payload
    * @memberof Store
    * @method dispatchActions
+   * @returns {void}
    */
   dispatchActions(action) {
     switch (action.actionType) {

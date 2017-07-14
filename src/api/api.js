@@ -7,8 +7,8 @@ import axios from 'axios';
 class Api {
   /**
    * get news sources using url parameter
-   * @param {String} url
-   * @returns {Promise}
+   * @param {String} url - news sources api url
+   * @return {Promise} - promise of news sources
    * @memberof Api
    * @method getSources
    */
@@ -18,8 +18,8 @@ class Api {
 
   /**
    * get news articles using url parameter
-   * @param {String} url
-   * @returns {Promise}
+   * @param {String} url - news articles api url
+   * @returns {Promise} - promise of news articles
    * @memberof Api
    * @member getArticles
    */

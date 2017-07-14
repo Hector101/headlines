@@ -16,15 +16,15 @@ class Routes extends React.Component {
   /**
    * @description Creates an instance of Routes.
    * @description set initial component state.
-   * @param {Object} props
+   * @param {Object} props - props from parent component
    * @memberof Routes
    * @constructs Routes
    */
   constructor(props) {
     super(props);
-    if (Auth.ifLoggedin()) {
+    if (Auth.isLoggedin()) {
       this.state = {
-        auth: Auth.ifLoggedin(),
+        auth: Auth.isLoggedin(),
       };
     } else {
       this.state = {
@@ -38,6 +38,7 @@ class Routes extends React.Component {
    * @description check if store updates
    * @memberof Routes
    * @method componentWillMount
+   * @returns {void}
    */
   componentWillMount() {
     store.on('change', this.updateAuth);
@@ -48,6 +49,7 @@ class Routes extends React.Component {
    * @description event listener before component unmounts
    * @memberof Routes
    * @method componentWillUnmount
+   * @returns {void}
    */
   componentWillUnmount() {
     store.removeListener('change', this.updateAuth);
@@ -62,13 +64,13 @@ class Routes extends React.Component {
    */
   updateAuth() {
     this.setState({
-      auth: Auth.ifLoggedin(),
+      auth: Auth.isLoggedin(),
     });
   }
   /**
    * @description render jsx to DOM
    * @method render
-   * @return {JSX}
+   * @return {JSX} - react jsx
    * @memberof Routes
    */
   render() {

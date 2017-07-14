@@ -1,42 +1,54 @@
 import Actions from '../flux/actions/Actions';
 
+/**
+ * @description Authentication class
+ * @class Auth
+ */
 class Auth {
+
+  /**
+   * Creates an instance of Auth.
+   * @memberof Auth
+   */
   constructor() {
-    this.ifLoggedin = this.ifLoggedin.bind(this);
+    this.isLoggedin = this.isLoggedin.bind(this);
   }
 
   /**
    * set authentication value to local strorage to true.
    * save user details to local storage
-   * @param {Object} signInResonse
+   * @param {Object} signInResonse - authentication response object
+   * @return {void}
    */
   signIn(signInResonse) {
     if (!signInResonse.error) {
       localStorage.setItem('auth', true);
       localStorage.setItem('userDetail', JSON.stringify(signInResonse.profileObj));
-      Actions.getAuth(this.ifLoggedin());
+      Actions.getAuth(this.isLoggedin());
     } else {
       localStorage.removeItem('auth');
     }
   }
 
   /**
-   * set authentication value to local strorage to false.
-   * remove user details from local storage.
+   * @description set authentication value to local strorage to false.
+   * @description remove user details from local storage.
    * @memberof Auth
+   * @returns {void}
    */
   signOut() {
     localStorage.removeItem('auth');
     localStorage.removeItem('userDetail');
-    Actions.getAuth(this.ifLoggedin());
+    Actions.getAuth(this.isLoggedin());
   }
 
   /**
-   * check if user is logged in to return true,
+   * @description check if user is logged in to return true,
    * else return false to log user out
    * @memberof Auth
+   * @returns {void}
    */
-  ifLoggedin() {
+  isLoggedin() {
     if (localStorage.getItem('auth')) {
       return true;
     }

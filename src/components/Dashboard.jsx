@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
   /**
    * @description Creates an instance of Dashboard.
    * @description set component initial state
-   * @param {Object} props
+   * @param {Object} props - props from parent component
    * @memberof Dashboard
    * @constructs Dashboard
    */
@@ -41,10 +41,12 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * @description create an action to get news sources and news articles if component mounts.
+   * @description create an action to get news sources
+   * and news articles if component mounts.
    * check if #getArticles is null to listen for change in store
    * @memberof Dashboard
    * @method componentDidMount
+   * @return {void}
    */
   componentDidMount() {
     Actions.getSources();
@@ -54,8 +56,10 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * remove this.upDatestate from the store event listener before component unmounts
+   * remove this.upDatestate from the store
+   * event listener before component unmounts
    * @memberof Dashboard
+   * @return {void}
    */
   componentWillUnmount() {
     store.removeListener('change', this.updateState);
@@ -63,8 +67,8 @@ class Dashboard extends React.Component {
 
   /**
    * @description get news articles from news channel
-   * @param {String} sourceName
-   * @param {String} sourceTitle
+   * @param {String} sourceName - news source id
+   * @param {String} sourceTitle - news source title
    * @return {void}
    * @method getSingleSource
    */
@@ -77,8 +81,8 @@ class Dashboard extends React.Component {
   /**
    * @description get news source by available type
    * "top" or "latest"
-   * @param {String} newsId
-   * @param {String} newsType
+   * @param {String} newsId - news source id
+   * @param {String} newsType - selected sort type
    * @return {void}
    * @method changeSort
    */
@@ -89,7 +93,7 @@ class Dashboard extends React.Component {
   /**
    * @description get the available sortBy array and update
    * the state property newsType
-   * @param {String} sortBy
+   * @param {String} sortBy - selected sort type
    * @return {void}
    * @method updateType
    */
@@ -138,6 +142,11 @@ class Dashboard extends React.Component {
     }
   }
 
+  /**
+   * @description render JSX to the DOM
+   * @returns {JSX}
+   * @memberof Dashboard
+   */
   render() {
     return (
       <div>

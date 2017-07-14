@@ -5,7 +5,7 @@ import Navbar from './Navbar';
  * Home compenent.
  * @description Functional react component.
  * @function Home
- * @return {JSX}
+ * @return {void}
  */
 const Home = () => (
   <div>

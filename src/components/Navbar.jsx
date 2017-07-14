@@ -30,6 +30,12 @@ class Navbar extends React.Component {
   signOut() {
     Auth.signOut();
   }
+
+  /**
+   * @description render jsx to the dom
+   * @returns {void}
+   * @memberof Navbar
+   */
   render() {
     return (
       <nav className="navbar-fixed #616161 grey darken-2">
@@ -44,7 +50,7 @@ class Navbar extends React.Component {
           <ul id="nav-mobile" className="right">
             <li>
               {
-              !Auth.ifLoggedin() ? (<GoogleLogin
+              !Auth.isLoggedin() ? (<GoogleLogin
                 clientId={`${process.env.CLIENT_ID}`}
                 buttonText="Sign in"
                 onSuccess={this.responseGoogle}

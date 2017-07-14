@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
 
   /**
    * Creates an instance of Sidebar.
-   * @param {any} props
+   * @param {Object} props - props from parent component
    * @memberof Sidebar
    * @constructs Sidebar
    */
@@ -28,8 +28,9 @@ class Sidebar extends React.Component {
   /**
    * @description update component state property
    * "sources" with the updated values
-   * @param {Object} nextProps
+   * @param {Object} nextProps - props from parent component
    * @memberof Sidebar
+   * @return {void}
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -40,7 +41,7 @@ class Sidebar extends React.Component {
   /**
    * @description get value from text input to update
    * state propery "searchInput"
-   * @param {Object} event
+   * @param {Object} event - onchange event object
    * @method onChange
    * @memberof Sidebar
    * @return {void}
@@ -55,8 +56,8 @@ class Sidebar extends React.Component {
   /**
    * @description set available sortBy array from api to
    * the class variable
-   * @param {String} available
-   * @param {String} newsId
+   * @param {Array} available - new source sort by array
+   * @param {String} newsId - new soirce id
    * @return {void}
    * @memberof Sidebar
    */
@@ -68,7 +69,7 @@ class Sidebar extends React.Component {
   /**
    * @description render JSX to the DOM
    * @method render
-   * @returns {JSX}
+   * @returns {void}
    * @memberof Sidebar
    */
   render() {
