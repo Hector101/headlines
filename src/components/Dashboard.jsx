@@ -42,6 +42,7 @@ class Dashboard extends React.Component {
 
   /**
    * @description create an action to get news sources and news articles if component mounts.
+   * check if #getArticles is null to listen for change in store
    * @memberof Dashboard
    * @method componentDidMount
    */
@@ -50,7 +51,6 @@ class Dashboard extends React.Component {
     if (store.getArticles() === null) {
       store.on('change', this.updateState);
     }
-    // Actions.getArticles('abc-news-au');
   }
 
   /**
@@ -116,6 +116,7 @@ class Dashboard extends React.Component {
   /**
    * get sources and articles
    * and set as component state properties
+   * get random new sources id to dispatch #getSources action
    * @memberof Dashboard
    * @return {void}
    * @method updateState
