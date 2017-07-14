@@ -6,8 +6,20 @@ import Auth from '../auth/auth';
 import store from '../flux/store/store';
 
 
-
+/**
+ * @description React router component
+ * @class Routes
+ * @extends {React.Component}
+ */
 class Routes extends React.Component {
+
+  /**
+   * @description Creates an instance of Routes.
+   * @description set initial component state.
+   * @param {Object} props
+   * @memberof Routes
+   * @constructs Routes
+   */
   constructor(props) {
     super(props);
     if (Auth.ifLoggedin()) {
@@ -23,32 +35,42 @@ class Routes extends React.Component {
   }
 
   /**
-   * check if store updates
+   * @description check if store updates
    * @memberof Routes
+   * @method componentWillMount
    */
   componentWillMount() {
     store.on('change', this.updateAuth);
   }
 
   /**
-   * remove this.updateAuth from the store
-   * event listener before component unmounts
+   * @description remove this.updateAuth from the store
+   * @description event listener before component unmounts
    * @memberof Routes
+   * @method componentWillUnmount
    */
   componentWillUnmount() {
     store.removeListener('change', this.updateAuth);
   }
-  
+
   /**
-   * set state property "auth"
-   * with authentication value
+   * @description set state property "auth"
+   * @description with authentication value
    * @memberof Routes
+   * @method updateAuth
+   * @return {void}
    */
   updateAuth() {
     this.setState({
       auth: Auth.ifLoggedin(),
     });
   }
+  /**
+   * @description render jsx to DOM
+   * @method render
+   * @return {JSX}
+   * @memberof Routes
+   */
   render() {
     return (
       <Router>

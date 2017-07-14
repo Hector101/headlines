@@ -8,11 +8,17 @@ import MainbarContent from './MainbarContent';
  * @extends {React.Component}
  */
 class Content extends React.Component {
+
+  /**
+   * Creates an instance of Content.
+   * @param {any} props
+   * @memberof Content
+   * @constructs Content
+  */
   constructor(props) {
     super(props);
     this.state = {
       articles: [{ init: true, id: '1' }],
-      selectedArticle: store.getSelected(),
       newsType: 'Top',
     };
   }
@@ -22,14 +28,20 @@ class Content extends React.Component {
    * "articles", "selectedArticle" and "newsType"
    * with the updated values
    * @param {Object} nextProps
+   * @method componentWillReceiveProps
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
       articles: nextProps.articles,
-      selectedArticle: store.getSelected(),
       newsType: nextProps.newsType,
     });
   }
+
+  /**
+   * Render news articles
+   * @returns {JSX}
+   * @memberof Content
+   */
   render() {
     const loading = (<div
           className="collection-item center"
@@ -72,7 +84,7 @@ class Content extends React.Component {
       );
     });
     return (
-      <MainbarContent list={list} newsType={this.state.newsType} selectedArticle={this.state.selectedArticle} />
+      <MainbarContent list={list} newsType={this.state.newsType} selectedArticle={this.state.selectedArticle} selectedArticle={this.props.selectedArticle} />
     );
   }
 

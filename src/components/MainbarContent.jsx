@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * render news articles
+ * @param {Object} props
+ */
 const MainbarContent = props => (
   <div className="col s12 m8 l9 content fixed">
     <div className="row">

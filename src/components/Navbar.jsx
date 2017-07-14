@@ -11,9 +11,11 @@ import Auth from '../auth/auth';
  * @extends {React.Component}
  */
 class Navbar extends React.Component {
+
   /**
   * Authenticate user
   * @param {Object} response
+  * @method responseGoogle
   */
   responseGoogle(response) {
     Auth.signIn(response);
@@ -22,6 +24,8 @@ class Navbar extends React.Component {
   /**
    * signout user
    * @memberof Navbar
+   * @method signOut
+   * @return {void}
    */
   signOut() {
     Auth.signOut();

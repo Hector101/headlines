@@ -1,3 +1,7 @@
+
+/**
+ * define action constants
+ */
 export default {
   SOURCES: 'SOURCES',
   SOURCES_ERROR: 'SOURCES_ERROR',

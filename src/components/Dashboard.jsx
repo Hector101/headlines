@@ -9,18 +9,26 @@ import Navbar from './Navbar';
 
 
 /**
- * Dashboard component, the parent component
- * of the Sidebar and Mainbar Component
+ * @description Dashboard component class
  * @class Dashboard
  * @extends {React.Component}
  */
 class Dashboard extends React.Component {
+
+  /**
+   * @description Creates an instance of Dashboard.
+   * @description set component initial state
+   * @param {Object} props
+   * @memberof Dashboard
+   * @constructs Dashboard
+   */
   constructor(props) {
     super(props);
     this.state = {
       sources: [{ init: true, id: 0, name: '' }],
       articles: null,
-      newsType: 'Top',
+      newsType: '',
+      selectedArticle: '',
     };
 
     /**
@@ -33,19 +41,20 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * when components mounts, create an action
-   * to get news sources and news articles.
+   * @description create an action to get news sources and news articles if component mounts.
    * @memberof Dashboard
+   * @method componentDidMount
    */
   componentDidMount() {
     Actions.getSources();
-    Actions.getArticles('abc-news-au');
-    this.onChange();
+    if (store.getArticles() === null) {
+      store.on('change', this.updateState);
+    }
+    // Actions.getArticles('abc-news-au');
   }
 
   /**
-   * remove this.upDatestate from the store,
-   * event listener before component unmounts
+   * remove this.upDatestate from the store event listener before component unmounts
    * @memberof Dashboard
    */
   componentWillUnmount() {
@@ -53,17 +62,11 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * check if store updates
-   * @memberof Dashboard
-   */
-  onChange() {
-    store.on('change', this.updateState);
-  }
-
-  /**
-   * get articles from news channel
+   * @description get news articles from news channel
    * @param {String} sourceName
    * @param {String} sourceTitle
+   * @return {void}
+   * @method getSingleSource
    */
   getSingleSource(sourceName, sourceTitle) {
     Actions.getArticles(sourceName);
@@ -72,19 +75,23 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * get news source by available type
+   * @description get news source by available type
    * "top" or "latest"
    * @param {String} newsId
    * @param {String} newsType
+   * @return {void}
+   * @method changeSort
    */
   changeSort(newsId, newsType) {
     Actions.getArticles(newsId, newsType);
   }
 
   /**
-   * get the available sortBy array and update
+   * @description get the available sortBy array and update
    * the state property newsType
    * @param {String} sortBy
+   * @return {void}
+   * @method updateType
    */
   updateType(sortBy) {
     this.setState({
@@ -93,13 +100,16 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * update state property "article"
+   * @description update state property "article"
    * when uptated in app store.
    * @memberof Dashboard
+   * @return {void}
+   * @method updateArticle
    */
   updateArticle() {
     this.setState({
       articles: store.getArticles(),
+      selectedArticle: store.getSelected(),
     });
   }
 
@@ -107,8 +117,18 @@ class Dashboard extends React.Component {
    * get sources and articles
    * and set as component state properties
    * @memberof Dashboard
+   * @return {void}
+   * @method updateState
    */
   updateState() {
+    if (store.getSources() !== null && store.getArticles() === null) {
+      const generateRandomNumber = Math.round(Math.random() * 70) - 1;
+      this.setState({
+        selectedArticle: store.getSources()[generateRandomNumber].name,
+        newsType: store.getSources()[generateRandomNumber].sortBysAvailable[0],
+      });
+      Actions.getArticles(store.getSources()[generateRandomNumber].id);
+    }
     if (store.getSources() !== null && store.getArticles() !== null) {
       this.setState({
         sources: store.getSources(),
@@ -116,6 +136,7 @@ class Dashboard extends React.Component {
       });
     }
   }
+
   render() {
     return (
       <div>
@@ -130,6 +151,7 @@ class Dashboard extends React.Component {
           <Mainbar
             articles={this.state.articles}
             newsType={this.state.newsType}
+            selectedArticle={this.state.selectedArticle}
           />
         </div>
       </div>

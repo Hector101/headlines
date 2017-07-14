@@ -2,8 +2,10 @@ import React from 'react';
 import Navbar from './Navbar';
 
 /**
- * Home compenent
- * Functional react component
+ * Home compenent.
+ * @description Functional react component.
+ * @function Home
+ * @return {JSX}
  */
 const Home = () => (
   <div>

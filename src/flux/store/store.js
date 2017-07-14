@@ -2,22 +2,34 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher/dispatcher';
 import ActionTypes from '../actions/ActionTypes';
 
-
+/**
+ * @description store class
+ * @class Store
+ * @extends {EventEmitter}
+ */
 class Store extends EventEmitter {
+
+  /**
+   * @description Creates an instance of Store.
+   * @param {Object} props
+   * @memberof Store
+   * @constructs Store
+   */
   constructor(props) {
     super(props);
     this.sources = null;
     this.articles = null;
-    this.selected = 'ABC News (AU)';
+    this.selected = '';
     this.available = '';
     this.auth = false;
   }
 
   /**
-   * set sources from action and emit event
+   * @description set sources from action and emit event
    * @param {Object} sources
-   *
+   * @return {void}
    * @memberof Store
+   * @method setSources
    */
   setSources(sources) {
     this.sources = sources;
@@ -25,10 +37,11 @@ class Store extends EventEmitter {
   }
 
   /**
-   * set articles and emit event
+   * @description set articles and emit event
    * @param {Object} articles
-   *
+   * @return {void}
    * @memberof Store
+   * @method setArticles
    */
   setArticles(articles) {
     this.articles = articles;
@@ -36,10 +49,11 @@ class Store extends EventEmitter {
   }
 
   /**
-   * set selected sources and emit event
+   * @description set selected sources and emit event
    * @param {String} name
-   *
+   * @return {void}
    * @memberof Store
+   * @method setSelected
    */
   setSelected(name) {
     this.selected = name;
@@ -47,10 +61,11 @@ class Store extends EventEmitter {
   }
 
   /**
-   * set authentication value and emit event
+   * @description set authentication value and emit event
    * @param {Boolean} authValue
-   *
+   * @return {void}
    * @memberof Store
+   * @method setAuth
    */
   setAuth(authValue) {
     this.auth = authValue;
@@ -58,51 +73,51 @@ class Store extends EventEmitter {
   }
 
   /**
-   * get sources
-   * @returns {Boolean}
-   *
+   * @description get sources
+   * @return {Boolean}
    * @memberof Store
+   * @method getSources
    */
   getSources() {
     return this.sources;
   }
 
   /**
-   * get articles
+   * @description get articles
    * @returns {Array}
-   *
    * @memberof Store
+   * @method getArticles
    */
   getArticles() {
     return this.articles;
   }
 
   /**
-   * get selected articles
+   * @description get selected articles
    * @returns {Array}
-   *
    * @memberof Store
+   * @method getSelected
    */
   getSelected() {
     return this.selected;
   }
 
   /**
-   * get authentication value
+   * @description get authentication value
    * @returns {Boolean}
-   *
    * @memberof Store
+   * @method getAuth
    */
   getAuth() {
     return this.auth;
   }
 
   /**
-   * set payload based on action action type
+   * @description set payload based on action action type
    * from dispatcher
    * @param {Object} action
-   *
    * @memberof Store
+   * @method dispatchActions
    */
   dispatchActions(action) {
     switch (action.actionType) {
@@ -124,12 +139,12 @@ class Store extends EventEmitter {
 }
 
 /**
- * create an instance of the store
+ * @description create an instance of the store
  */
 const store = new Store();
 
 /**
- * register store instance method to dispatcher
+ * @description register store instance method to dispatcher
  */
 Dispatcher.register(store.dispatchActions.bind(store));
 

@@ -2,13 +2,18 @@ import React from 'react';
 
 
 /**
- * Sidebar component for the desktop view.
- * Renders the new sources from the API
+ * @description Sidebar component class
  * @class Sidebar
  * @extends {React.Component}
  */
 class Sidebar extends React.Component {
 
+  /**
+   * Creates an instance of Sidebar.
+   * @param {any} props
+   * @memberof Sidebar
+   * @constructs Sidebar
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -21,10 +26,9 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * update component state property
+   * @description update component state property
    * "sources" with the updated values
    * @param {Object} nextProps
-   *
    * @memberof Sidebar
    */
   componentWillReceiveProps(nextProps) {
@@ -34,11 +38,12 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * get value from text input to update
+   * @description get value from text input to update
    * state propery "searchInput"
    * @param {Object} event
-   *
+   * @method onChange
    * @memberof Sidebar
+   * @return {void}
    */
   onChange(event) {
     const value = event.target.value;
@@ -48,11 +53,11 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * set available sortBy array from api to
+   * @description set available sortBy array from api to
    * the class variable
    * @param {String} available
    * @param {String} newsId
-   *
+   * @return {void}
    * @memberof Sidebar
    */
   setSortBysAvailabale(available, newsId) {
@@ -60,6 +65,12 @@ class Sidebar extends React.Component {
     this.id = newsId;
   }
 
+  /**
+   * @description render JSX to the DOM
+   * @method render
+   * @returns {JSX}
+   * @memberof Sidebar
+   */
   render() {
     /**
      * get user details saved in the local storage

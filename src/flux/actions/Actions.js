@@ -4,14 +4,16 @@ import Api from '../../api/api';
 
 
 /**
- * declare Action dispatcher class
+ * @description declare Action dispatcher class
  * @class Actions
  */
 class Actions {
 
   /**
-   * dispach news sources to store.
+   * @description dispach news sources to store.
    * @memberof Actions
+   * @return {void}
+   * @method getSources
    */
   getSources() {
     Api.getSources('https://newsapi.org/v1/sources')
@@ -26,14 +28,15 @@ class Actions {
   }
 
   /**
-   * get articles from a source and dispatch to store
+   * @description get articles from a source and dispatch to store
    * @param {String}
    * @param {string} sortBy
+   * @return {void}
+   * @method getArticles
    */
   getArticles(id, sortBy) {
     /**
-     * check if both parameters are passed to the
-     * method to call api with sort by attribute
+     * @description check if both parameters are available
      */
     if (sortBy && id) {
       Api.getArticles(`https://newsapi.org/v1/articles?source=${id}&sortBy=${sortBy}&apiKey=${process.env.NEWS_API}`)
@@ -59,8 +62,10 @@ class Actions {
   }
 
   /**
-   * dispatch source name to store
+   * @description dispatch source name to store
    * @param {String} sourceName
+   * @return {void}
+   * @method selectedSource
    */
   selectedSource(sourceName) {
     Dispatcher.dispatch({
@@ -69,9 +74,11 @@ class Actions {
     });
   }
   /**
-   * disptach authentication value to store
+   * @description disptach authentication value to store
    * @param {String} authValue
    * @memberof Actions
+   * @return {void}
+   * @method getAuth
    */
   getAuth(authValue) {
     Dispatcher.dispatch({
