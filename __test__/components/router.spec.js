@@ -21,7 +21,7 @@ describe('Router component', () => {
       localStorage.removeItem('auth');
       wrapper.instance().updateAuth();
       wrapper.setState({
-        auth: Auth.ifLoggedin(),
+        auth: Auth.isLoggedin(),
       });
       expect(wrapper.state().auth).toBe(false);
     });

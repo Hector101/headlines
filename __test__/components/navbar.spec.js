@@ -12,7 +12,7 @@ describe('Navber component', () => {
   const wrapper = shallow(<Navbar />);
   const spyAuthSignin = sinon.spy(Auth, 'signIn');
   const spyAuthSignOut = sinon.spy(Auth, 'signOut');
-  const spyAuthIfLoggedIn = sinon.spy(Auth, 'ifLoggedin');
+  const spyAuthIsLoggedIn = sinon.spy(Auth, 'isLoggedin');
 
   const response = {
     profileObj: {
@@ -39,7 +39,7 @@ describe('Navber component', () => {
     expect(JSON.parse(localStorage.getItem('auth'))).toEqual(response.profileObj);
   });
   it('', () => {
-    expect(spyAuthIfLoggedIn()).toBe(true);
+    expect(spyAuthIsLoggedIn()).toBe(true);
   });
   it('should expect the localStorage key "auth" to be undefined', () => {
     wrapper.find('.login').simulate('click');
