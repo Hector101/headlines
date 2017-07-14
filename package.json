@@ -19,7 +19,8 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.js",
-      "src/**/*.jsx"
+      "src/**/*.jsx",
+      "!src/app.js"
     ],
     "collectCoverage": true
   },
@@ -39,7 +40,7 @@
     "connect-history-api-fallback": "^1.3.0",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.2",
-    "dotenv-webpack": "^1.5.0",
+    "dotenv-webpack": "^1.5.3",
     "express": "^4.15.3",
     "file-loader": "^0.11.2",
     "flux": "^3.1.2",

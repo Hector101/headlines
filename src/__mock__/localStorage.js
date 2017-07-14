@@ -1,3 +1,7 @@
+/**
+ * mock local storage object
+ */
+
 const localStorageMock = (() => {
   const store = {};
 

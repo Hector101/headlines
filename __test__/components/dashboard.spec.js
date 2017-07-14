@@ -10,19 +10,13 @@ window.localStorage = localStorageMock;
 
 describe('Dasdboard component', () => {
   const wrapper = shallow(<Dashboard />);
-  const spyDidMount = sinon.spy(Dashboard.prototype, 'componentDidMount');
+  wrapper.instance().componentDidMount();
   const spyWillUnount = sinon.spy(Dashboard.prototype, 'componentWillUnmount');
   const spyActionGetArticles = sinon.spy(Actions, 'getArticles');
 
   describe('should contain', () => {
     it('2 children', () => {
       expect(wrapper.children()).toHaveLength(2);
-    });
-  });
-  describe('componentDidMount', () => {
-    it('should be called once after mount', () => {
-      wrapper.instance().componentDidMount();
-      expect(spyDidMount.calledOnce).toBe(true);
     });
   });
   describe('state property', () => {
@@ -33,43 +27,34 @@ describe('Dasdboard component', () => {
       expect(wrapper.state().sources.length).toEqual(1);
     });
   });
-  describe('getSingleSource method', () => {
+  describe('#getSingleSource', () => {
     it('should call the getArticles action created when called', () => {
       wrapper.instance().getSingleSource('cnn-news', 'CNN News');
       expect(spyActionGetArticles.called).toBeTruthy();
     });
   });
-  describe('changeSort method', () => {
+  describe('#changeSort', () => {
     it('should call the getArticles action created when called', () => {
       wrapper.instance().changeSort('cnn-news', 'genetal');
       expect(spyActionGetArticles.called).toBeTruthy();
     });
   });
-  describe('updateType is called', () => {
-    it('the component state updates to "latest"', () => {
+  describe('#updateType', () => {
+    it('should update component state property "newsType" to "latest"', () => {
       wrapper.instance().updateType('latest');
-      wrapper.state = {
-        newsType: 'latest',
-      };
-      expect(wrapper.state.newsType).toBe('latest');
+      expect(wrapper.state().newsType).toBe('latest');
     });
   });
-  describe('updateArticle is called', () => {
-    it('the component state updates to from store which is still null', () => {
+  describe('#updateArticle', () => {
+    it('should initialize withe a null value', () => {
       wrapper.instance().updateArticle();
-      wrapper.state = {
-        articles: store.getArticles(),
-      };
+      wrapper.state().articles = store.getArticles();
       expect(store.getArticles()).toBe(null);
     });
-    it('the component state updates to from store which is still null', () => {
+    it('should update store with the payload value', () => {
       wrapper.instance().updateState();
       store.setArticles('cnn');
       store.setSources('cnn');
-      wrapper.state = {
-        sources: store.getSources(),
-        articles: store.getArticles(),
-      };
       expect(store.getSources()).toBe('cnn');
       expect(store.getArticles()).toBe('cnn');
     });

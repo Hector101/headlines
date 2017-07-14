@@ -12,6 +12,7 @@ localStorage.setItem('userDetail', JSON.stringify(profileMock));
 describe('Sidebar component', () => {
   const wrapper = shallow(<Sidebar sources={sources.sources} />);
   const spyComponentWillRecieveProps = sinon.spy(Sidebar.prototype, 'componentWillReceiveProps');
+  wrapper.instance().setSortBysAvailabale(['top', 'lastest'], 'cnn');
 
   describe('componentWillRecieveProps', () => {
     it('should not called until props updates', () => {
@@ -35,10 +36,11 @@ describe('Sidebar component', () => {
       expect(wrapper.state().searchInput).toBe('cnn');
     });
   });
-  describe('should update "sortBysAvailabale" and "id" class variables', () => {
-    it('when setSortBysAvailabale method is called', () => {
-      wrapper.instance().setSortBysAvailabale(['top', 'lastest'], 'cnn');
+  describe('#setSortBysAvailabale', () => {
+    it('should update sortBysAvailabale instance variable to "[top, lastest]" ', () => {
       expect(wrapper.instance().sortBysAvailabale).toEqual(['top', 'lastest']);
+    });
+    it('should update id instance variable to "cnn" ', () => {
       expect(wrapper.instance().id).toEqual('cnn');
     });
   });

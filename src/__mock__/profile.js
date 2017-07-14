@@ -1,3 +1,6 @@
+/**
+ * mock user profile object
+ */
 
 const profileObj = {
   email: 'hello.world@email.com',
